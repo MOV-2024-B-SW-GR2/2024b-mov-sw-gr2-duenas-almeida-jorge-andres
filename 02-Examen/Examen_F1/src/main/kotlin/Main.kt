@@ -423,11 +423,11 @@ fun actualizarPiloto(listaPilotos: MutableList<Piloto>) {
     val piloto = listaPilotos.find { it.id == id }
     if (piloto != null) {
         // Solicitar nuevos datos para actualizar
-        print("Ingrese el nuevo nombre (${piloto.nombre}): ")
-        piloto.nombre = scanner.next()
-
         print("Ingrese el nuevo número (${piloto.numero}): ")
         piloto.numero = scanner.nextInt()
+        scanner.nextLine() // Limpiar el buffer
+        print("Ingrese el nuevo nombre (${piloto.nombre}): ")
+        piloto.nombre = scanner.next()
 
         println("Piloto actualizado exitosamente.")
     } else {
