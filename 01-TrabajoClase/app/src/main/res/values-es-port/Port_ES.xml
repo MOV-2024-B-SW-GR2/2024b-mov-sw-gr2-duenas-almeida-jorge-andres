@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="principal">PERUBA DE PORTRAIT ESPAÑOL</string>
+    <color name="principal_color"> #c9d811</color>
+    <color name="fondo_color">#d811a5</color>
+</resources>

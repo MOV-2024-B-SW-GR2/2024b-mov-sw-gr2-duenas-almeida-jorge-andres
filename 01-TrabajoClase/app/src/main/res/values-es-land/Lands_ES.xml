@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="principal">PERUBA DE LANDSCAPE ESPAÑOL</string>
+    <color name="principal_color"> #0727f4</color>
+    <color name="fondo_color">#1cf407</color>
+</resources>
