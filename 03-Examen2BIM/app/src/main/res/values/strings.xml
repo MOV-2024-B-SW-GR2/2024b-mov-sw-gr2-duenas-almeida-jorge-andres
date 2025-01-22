@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DeberIIBIM_pt2</string>
+    <string-array name="string_array_opciones_dialogo">
+        <item>Si</item>
+        <item>No</item>
+    </string-array>
+</resources>
