@@ -3,6 +3,7 @@ package com.example.gr2sw2024b_jada
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -32,6 +33,11 @@ class GGoogleMaps : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+        val botonCarolina = findViewById<Button>(R.id.btn_ir_carolina)
+        botonCarolina.setOnClickListener {
+            val carolina = LatLng(-0.180653, -78.467834)
+            moverCamaraConZoom(carolina)
         }
         solicitarPermisos()
         inicializarLogicaMapa()
