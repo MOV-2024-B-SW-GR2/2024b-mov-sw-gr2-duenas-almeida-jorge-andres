@@ -96,6 +96,16 @@ class BListeViewEscuderia : AppCompatActivity() {
                 }
                 true
             }
+            R.id.mi_ver_centro_desarrollo -> {
+                val escuderiaSeleccionada = arreglo[posicionItemSeleccionado]
+                val idEscuderia = escuderiaSeleccionada.id
+                if (idEscuderia > 0) {
+                    irActividadParametros(GGoogleMaps::class.java, idEscuderia)
+                } else {
+                    mostrarSnackbar("El ID de la escudería no es válido.")
+                }
+                true
+            }
             else -> super.onContextItemSelected(item)
         }
     }

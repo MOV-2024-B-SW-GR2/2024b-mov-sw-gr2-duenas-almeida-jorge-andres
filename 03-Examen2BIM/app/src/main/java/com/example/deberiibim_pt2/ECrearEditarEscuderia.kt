@@ -24,6 +24,8 @@ class ECrearEditarEscuderia : AppCompatActivity() {
             val fundacion = findViewById<EditText>(R.id.input_fundacion)
             val nacionalidad = findViewById<EditText>(R.id.input_nacionalidad)
             val presupuesto = findViewById<EditText>(R.id.input_presupuesto)
+            val latCentroDesarrolo = findViewById<EditText>(R.id.input_lat_centro_desarrollo)
+            val lonCentroDesarrolo = findViewById<EditText>(R.id.input_lon_centro_desarrollo)
 
             // Rellenar los campos con los datos de la escudería
             id.setText(it.id.toString())
@@ -31,6 +33,8 @@ class ECrearEditarEscuderia : AppCompatActivity() {
             fundacion.setText(it.fundacion)
             nacionalidad.setText(it.nacionalidad)
             presupuesto.setText(it.presupuesto.toString())
+            latCentroDesarrolo.setText(it.latCentroDesarrollo.toString())
+            lonCentroDesarrolo.setText(it.lonCentroDesarrollo.toString())
         }
 
         val botonCrearEscuderia = findViewById<Button>(R.id.btn_agregar_escuderia)
@@ -39,12 +43,16 @@ class ECrearEditarEscuderia : AppCompatActivity() {
             val fundacion = findViewById<EditText>(R.id.input_fundacion)
             val nacionalidad = findViewById<EditText>(R.id.input_nacionalidad)
             val presupuesto = findViewById<EditText>(R.id.input_presupuesto)
+            val latCentroDesarrolo = findViewById<EditText>(R.id.input_lat_centro_desarrollo)
+            val lonCentroDesarrolo = findViewById<EditText>(R.id.input_lon_centro_desarrollo)
             val resultado = EBaseDeDatos.tablaEscuderia!!.crearEscuderia(
                 nombre.text.toString(),
                 fundacion.text.toString(),
                 nacionalidad.text.toString(),
                 esActiva = true,
-                presupuesto.text.toString().toDouble()
+                presupuesto.text.toString().toDouble(),
+                latCentroDesarrolo.text.toString().toDouble(),
+                lonCentroDesarrolo.text.toString().toDouble()
             )
             if (resultado) {
                 mostrarSnackbar("Escudería creada")
@@ -60,12 +68,16 @@ class ECrearEditarEscuderia : AppCompatActivity() {
             val fundacion = findViewById<EditText>(R.id.input_fundacion)
             val nacionalidad = findViewById<EditText>(R.id.input_nacionalidad)
             val presupuesto = findViewById<EditText>(R.id.input_presupuesto)
+            val latCentroDesarrolo = findViewById<EditText>(R.id.input_lat_centro_desarrollo)
+            val lonCentroDesarrolo = findViewById<EditText>(R.id.input_lon_centro_desarrollo)
             val resultado = EBaseDeDatos.tablaEscuderia!!.actualizarEscuderia(
                 nombre.text.toString(),
                 fundacion.text.toString(),
                 nacionalidad.text.toString(),
                 esActiva = true,
                 presupuesto.text.toString().toDouble(),
+                latCentroDesarrolo.text.toString().toDouble(),
+                lonCentroDesarrolo.text.toString().toDouble(),
                 escuderia?.id ?: -1
             )
             if (resultado) {

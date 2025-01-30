@@ -23,7 +23,9 @@ class ESqliteHelperEscuderia(
                     fundacion VARCHAR(10),
                     nacionalidad VARCHAR(50),
                     esActiva BOOLEAN,
-                    presupuesto DOUBLE
+                    presupuesto DOUBLE,
+                    latCentroDesarrollo DOUBLE,
+                    lonCentroDesarrollo DOUBLE
                 )
             """.trimIndent()
         val scriptSQLCrearTablaPiloto =
@@ -44,7 +46,6 @@ class ESqliteHelperEscuderia(
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        // Actualización de la base de datos (puedes agregar las migraciones necesarias si hay cambios de esquema)
     }
 
     fun crearEscuderia(
@@ -52,7 +53,9 @@ class ESqliteHelperEscuderia(
         fundacion: String,
         nacionalidad: String,
         esActiva: Boolean,
-        presupuesto: Double
+        presupuesto: Double,
+        latCentroDesarrollo: Double,
+        lonCentroDesarrollo: Double
     ): Boolean {
         val baseDatosEscritura = writableDatabase
         val valoresGuardar = ContentValues().apply {
@@ -61,6 +64,8 @@ class ESqliteHelperEscuderia(
             put("nacionalidad", nacionalidad)
             put("esActiva", esActiva)
             put("presupuesto", presupuesto)
+            put("latCentroDesarrollo", latCentroDesarrollo)
+            put("lonCentroDesarrollo", lonCentroDesarrollo)
         }
         val resultadoGuardar = baseDatosEscritura.insert("ESCUDERIA", null, valoresGuardar)
         baseDatosEscritura.close()
@@ -81,6 +86,8 @@ class ESqliteHelperEscuderia(
         nacionalidad: String,
         esActiva: Boolean,
         presupuesto: Double,
+        latCentroDesarrollo: Double,
+        lonCentroDesarrollo: Double,
         id: Int
     ): Boolean {
         val baseDatosEscritura = writableDatabase
@@ -90,6 +97,8 @@ class ESqliteHelperEscuderia(
             put("nacionalidad", nacionalidad)
             put("esActiva", esActiva)
             put("presupuesto", presupuesto)
+            put("latCentroDesarrollo", latCentroDesarrollo)
+            put("lonCentroDesarrollo", lonCentroDesarrollo)
         }
         val parametrosConsultaActualizar = arrayOf(id.toString())
         val resultadoActualizar = baseDatosEscritura.update("ESCUDERIA", valoresAActualizar, "id=?", parametrosConsultaActualizar)
@@ -110,8 +119,10 @@ class ESqliteHelperEscuderia(
             val nacionalidad = resultadoConsultaLectura.getString(3)
             val esActiva = resultadoConsultaLectura.getInt(4) == 1
             val presupuesto = resultadoConsultaLectura.getDouble(5)
+            val latCentroDesarrollo = resultadoConsultaLectura.getDouble(6)
+            val lonCentroDesarrollo = resultadoConsultaLectura.getDouble(7)
             baseDatosLectura.close()
-            return BEscuderia(id, nombre, fundacion, nacionalidad, esActiva, presupuesto)
+            return BEscuderia(id, nombre, fundacion, nacionalidad, esActiva, presupuesto, latCentroDesarrollo, lonCentroDesarrollo)
         }
         baseDatosLectura.close()
         return null
@@ -130,7 +141,9 @@ class ESqliteHelperEscuderia(
             val nacionalidad = resultadoConsultaLectura.getString(3)
             val esActiva = resultadoConsultaLectura.getInt(4) == 1
             val presupuesto = resultadoConsultaLectura.getDouble(5)
-            arregloEscuderias.add(BEscuderia(id, nombre, fundacion, nacionalidad, esActiva, presupuesto))
+            val latCentroDesarrollo = resultadoConsultaLectura.getDouble(6)
+            val lonCentroDesarrollo = resultadoConsultaLectura.getDouble(7)
+            arregloEscuderias.add(BEscuderia(id, nombre, fundacion, nacionalidad, esActiva, presupuesto, latCentroDesarrollo, lonCentroDesarrollo))
         }
         baseDatosLectura.close()
         return arregloEscuderias

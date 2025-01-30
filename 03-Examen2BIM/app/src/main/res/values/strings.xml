@@ -4,4 +4,5 @@
         <item>Si</item>
         <item>No</item>
     </string-array>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>

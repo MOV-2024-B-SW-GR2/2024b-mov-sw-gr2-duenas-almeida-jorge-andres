@@ -6,6 +6,9 @@
         android:id="@+id/mi_ver_pilotos"
         android:title="Ver pilotos" />
     <item
+        android:id="@+id/mi_ver_centro_desarrollo"
+        android:title="Ver centro de desarrollo" />
+    <item
         android:id="@+id/mi_actualizar_escuderia"
         android:title="Actualizar" />
     <item

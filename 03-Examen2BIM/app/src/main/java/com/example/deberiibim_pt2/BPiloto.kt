@@ -47,6 +47,6 @@ class BPiloto (
         }
     }
     override fun toString(): String {
-        return "${nombre} ${fechaNacimiento} ${numero} ${salario} ${esTitular} ${idEscuderia}"
+        return "Nombre: ${nombre} \nNacimiento: ${fechaNacimiento} \nNúmero: ${numero} \nSalario: ${salario} \nTitular: ${esTitular} \nIdEscuderia: ${idEscuderia}"
     }
 }

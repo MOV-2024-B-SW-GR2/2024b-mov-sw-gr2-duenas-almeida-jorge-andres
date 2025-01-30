@@ -10,7 +10,9 @@ class BEscuderia (
     var fundacion: String,
     var nacionalidad: String,
     var esActiva: Boolean,
-    var presupuesto: Double
+    var presupuesto: Double,
+    var latCentroDesarrollo: Double,
+    var lonCentroDesarrollo: Double
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
@@ -18,6 +20,8 @@ class BEscuderia (
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readByte() != 0.toByte(),
+        parcel.readDouble(),
+        parcel.readDouble(),
         parcel.readDouble()
     )
 
@@ -28,6 +32,8 @@ class BEscuderia (
         parcel.writeString(nacionalidad)
         parcel.writeByte(if (esActiva) 1 else 0)
         parcel.writeDouble(presupuesto)
+        parcel.writeDouble(latCentroDesarrollo)
+        parcel.writeDouble(lonCentroDesarrollo)
     }
 
     override fun describeContents(): Int {
@@ -44,6 +50,6 @@ class BEscuderia (
         }
     }
     override fun toString(): String {
-        return "${nombre} ${fundacion} ${nacionalidad} ${esActiva} ${presupuesto}"
+        return "Nombre: ${nombre} \nFundación: ${fundacion} \nNacionalidad: ${nacionalidad} \nActiva: ${esActiva} \nPresupuesto: ${presupuesto}"
     }
 }
