@@ -34,17 +34,13 @@ class GGoogleMaps : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        solicitarPermisos()
+        inicializarLogicaMapa()
         val botonCarolina = findViewById<Button>(R.id.btn_ir_carolina)
         botonCarolina.setOnClickListener {
             val carolina = LatLng(-0.180653, -78.467834)
             moverCamaraConZoom(carolina)
         }
-        solicitarPermisos()
-        inicializarLogicaMapa()
-        moverQuicentro()
-        anadirPolilinea()
-        anadirPoligono()
-        escucharListeners()
     }
     fun tengoPermisos():Boolean {
         val contexto = applicationContext
@@ -55,19 +51,10 @@ class GGoogleMaps : AppCompatActivity() {
         permisos = tienePermisos
         return permisos
     }
-    fun solicitarPermisos() {
-        val contexto = applicationContext
-        val permisoFine = ContextCompat.checkSelfPermission(contexto, nombrePermisoFine)
-        val permisoCoarse = ContextCompat.checkSelfPermission(contexto, nombrePermisoCoarse)
-        val tienePermisos = permisoFine == PackageManager.PERMISSION_GRANTED &&
-                permisoCoarse == PackageManager.PERMISSION_GRANTED
-        if (tienePermisos) {
-            permisos = true
-        } else {
+    fun solicitarPermisos(){
+        if(!tengoPermisos()){
             ActivityCompat.requestPermissions(
-                this,
-                arrayOf(nombrePermisoFine, nombrePermisoCoarse),
-                1
+                this, arrayOf(nombrePermisoFine, nombrePermisoCoarse), 1
             )
         }
     }
@@ -78,11 +65,15 @@ class GGoogleMaps : AppCompatActivity() {
             with(googleMap) {
                 mapa = googleMap
                 establecerConfiguracionMapa()
+                moverQuicentro()
+                anadirPolilinea()
+                anadirPoligono()
+                escucharListeners()
             }
         }
     }
     fun moverQuicentro() {
-        val quicentro = LatLng(-0.176, -78.480)
+        val quicentro = LatLng(-0.176, -78.4
         val titulo = "Quicentro"
         val marcadorQuicentro = anadirMarcador(quicentro, titulo)
         marcadorQuicentro.tag = titulo
